@@ -25,6 +25,7 @@ export const ContainerCategory = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
+  font-weight: 500;
 `
 
 export const Category = styled.p`
