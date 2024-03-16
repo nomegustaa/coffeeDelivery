@@ -54,7 +54,7 @@ export const ContainerSubTitle = styled.div<colorIcons>`
   z-index: 10;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 1rem;
   margin: 20px 0;
 
   div {

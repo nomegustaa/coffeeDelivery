@@ -19,6 +19,7 @@ const OrderConfirmed = () => {
             </div>
             <p>
               Entrega em <strong>Rua joão Daniel Martinelli, 102</strong>
+              <br />
               Farrapos - Porto Alegre, Rs
             </p>
           </S.ContainerSubTitle>
@@ -28,7 +29,9 @@ const OrderConfirmed = () => {
               <Timer size={24} color="#FFF" weight="fill" />
             </div>
             <p>
-              Previsão de entrega <strong>20 min - 30 min</strong>
+              Previsão de entrega
+              <br />
+              <strong>20 min - 30 min</strong>
             </p>
           </S.ContainerSubTitle>
 
@@ -37,7 +40,9 @@ const OrderConfirmed = () => {
               <CurrencyCircleDollar size={24} color="#FFF" weight="regular" />
             </div>
             <p>
-              Pagamento na entrega <strong>Cartão de Crédito</strong>
+              Pagamento na entrega
+              <br />
+              <strong>Cartão de Crédito</strong>
             </p>
           </S.ContainerSubTitle>
         </S.ContainerIcons>
