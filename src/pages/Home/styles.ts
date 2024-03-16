@@ -9,6 +9,9 @@ export const ContainerMain = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `
 
 export const Title = styled.h1`
@@ -51,9 +54,15 @@ export const IconsContainer = styled.div<colorIcons>`
 export const TitleCoffee = styled.h1`
   font-family: 'Baloo 2', sans-serif;
   color: ${(props) => props.theme['base-subtitle']};
+  @media (max-width: 1000px) {
+    text-align: center;
+  }
 `
 
 export const ContainerCoffes = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  @media (max-width: 1000px) {
+    justify-items: center;
+  }
 `
