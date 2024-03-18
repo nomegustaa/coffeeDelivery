@@ -1,14 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Button = styled.button`
-  border-radius: 6x;
+  border-radius: 6px;
   padding: 12px 8px;
   text-align: center;
   border: none;
-  background-color: ${props => props.theme.yellow};
-  color: ${props => props.theme.white};
-
-  &:hover{
-    background-color: ${props => props.theme["yellow-dark"]};
-    transition: .1s;
-}`
+  background-color: ${(props) => props.theme.yellow};
+  color: ${(props) => props.theme.white};
+  width: 100%;
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-dark']};
+    transition: 0.1s;
+  }
+`
