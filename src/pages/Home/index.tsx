@@ -4,11 +4,13 @@ import * as S from './styles'
 import Coffees from '../../components/Coffes'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { IResponseCoffe } from './interface'
+import { IResponseCoffe, ISelectedResponseCoffe } from './interface'
 
 const Home = () => {
   const [data, setData] = useState<IResponseCoffe[] | null>(null)
-
+  const [selectedCoffe, setSelectedCoffe] = useState<
+    ISelectedResponseCoffe[] | null
+  >(null)
   const getCoffes = async () => {
     try {
       const response = await axios.get('../../../api.json')
@@ -18,6 +20,20 @@ const Home = () => {
       console.log(e)
     }
   }
+
+  console.log(selectedCoffe)
+
+  const getCoffeSelected = (idCoffe: number, countCoffe: number) => {
+    console.log(idCoffe, countCoffe)
+    // const getCoffe = data?.find((item) => item.id === idCoffe)
+    // const coffeExisting = selectedCoffe?.some((item) => item.id === idCoffe)
+    // if (getCoffe) {
+    // console.log(coffeSelected)
+    // setSelectedCoffe(coffeSelected)
+    // }
+  }
+
+  // console.log(selectedCoffe)
 
   useEffect(() => {
     getCoffes()
@@ -80,6 +96,7 @@ const Home = () => {
               descricao={item.descricao}
               imagem={item.imagem}
               valor={item.valor}
+              getCoffeSelected={getCoffeSelected}
             />
           )
         })}
