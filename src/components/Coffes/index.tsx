@@ -12,6 +12,7 @@ const Coffees = ({
   descricao,
   valor,
   getCoffeSelected,
+  data,
 }: IResponseCoffe) => {
   const [countCoffe, setCountCoffe] = useState<number>(1)
   return (
@@ -32,12 +33,13 @@ const Coffees = ({
         </p>
 
         <InputNumber countCoffe={countCoffe} setCountCoffe={setCountCoffe} />
+
         <div className="shoppingCart">
           <ShoppingCart
             size={24}
             weight="fill"
             color="#FFF"
-            onClick={() => getCoffeSelected(id, countCoffe)}
+            onClick={() => getCoffeSelected(id, countCoffe, data)}
           />
         </div>
       </S.ShoppingCart>

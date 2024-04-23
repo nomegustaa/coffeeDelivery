@@ -4,16 +4,19 @@ import { GlobalStyle } from './styles/global'
 import Router from './Router'
 import { BrowserRouter } from 'react-router-dom'
 import Header from './utils/Header'
+import { Context } from './context/AuthContext'
 
 const App = () => {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
-        <Header city="São Paulo, SP" />
-        <Router />
-      </BrowserRouter>
-      <GlobalStyle />
-    </ThemeProvider>
+    <Context>
+      <ThemeProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <Header city="São Paulo, SP" />
+          <Router />
+        </BrowserRouter>
+        <GlobalStyle />
+      </ThemeProvider>
+    </Context>
   )
 }
 

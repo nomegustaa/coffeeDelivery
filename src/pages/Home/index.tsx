@@ -3,14 +3,13 @@ import { Timer, ShoppingCart, Coffee, Package } from 'phosphor-react'
 import * as S from './styles'
 import Coffees from '../../components/Coffes'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { IResponseCoffe, ISelectedResponseCoffe } from './interface'
+import { useContext, useEffect, useState } from 'react'
+import { IResponseCoffe } from './interface'
+import { AuthContext } from '../../context/AuthContext'
 
 const Home = () => {
+  const { getCoffeSelected } = useContext(AuthContext)
   const [data, setData] = useState<IResponseCoffe[] | []>([])
-  const [selectedCoffe, setSelectedCoffe] = useState<
-    ISelectedResponseCoffe[] | []
-  >([])
   const getCoffes = async () => {
     try {
       const response = await axios.get('../../../api.json')
@@ -18,22 +17,6 @@ const Home = () => {
       setData(response.data.produtos)
     } catch (e) {
       console.log(e)
-    }
-  }
-
-  const getCoffeSelected = (idCoffe: number, countCoffe: number) => {
-    const getCoffe = data?.find((item) => item.id === idCoffe)
-    if (getCoffe) {
-      const coffeExisting = selectedCoffe.some((item) => item.id === idCoffe)
-      if (coffeExisting) {
-        setSelectedCoffe((prev) =>
-          prev.map((item) => {
-            return { ...item, count: item.count + countCoffe }
-          }),
-        )
-      } else {
-        setSelectedCoffe([...selectedCoffe, { ...getCoffe, count: countCoffe }])
-      }
     }
   }
 
@@ -99,6 +82,7 @@ const Home = () => {
               imagem={item.imagem}
               valor={item.valor}
               getCoffeSelected={getCoffeSelected}
+              data={data}
             />
           )
         })}

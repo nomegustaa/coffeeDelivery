@@ -7,6 +7,17 @@ export const ContainerTotalCoffes = styled.div`
   max-width: 448px;
 `
 
+export const CoffeeNotFound = styled.p`
+  color: ${(props) => props.theme['base-label']};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 368px;
+  height: 125px;
+  margin: 24px 0;
+  border-bottom: 1px solid ${(props) => props.theme['base-button']};
+`
+
 export const ContainerCoffe = styled.div`
   display: flex;
   justify-content: space-between;

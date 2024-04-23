@@ -13,4 +13,9 @@ export const Button = styled.button`
     background-color: ${(props) => props.theme['yellow-dark']};
     transition: 0.1s;
   }
+
+  &:disabled {
+    background-color: ${(props) => props.theme['base-label']};
+    cursor: not-allowed;
+  }
 `
