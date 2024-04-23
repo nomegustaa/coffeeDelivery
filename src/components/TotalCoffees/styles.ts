@@ -47,15 +47,15 @@ export const PriceCoffe = styled.p`
 export const ButtonRemove = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  text-align: center;
   background-color: ${(props) => props.theme['base-button']};
   padding: 8px;
-  width: 30%;
   border-radius: 6px;
   height: 40px;
   font-family: 'Roboto', sans-serif;
   color: ${(props) => props.theme['base-text']};
   font-size: 12px;
+  cursor: pointer;
 `
 
 export const ContainerPrice = styled.div`

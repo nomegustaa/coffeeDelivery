@@ -8,6 +8,7 @@ export const Button = styled.button`
   background-color: ${(props) => props.theme.yellow};
   color: ${(props) => props.theme.white};
   width: 100%;
+  cursor: pointer;
   &:hover {
     background-color: ${(props) => props.theme['yellow-dark']};
     transition: 0.1s;
