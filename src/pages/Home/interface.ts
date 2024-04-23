@@ -15,5 +15,5 @@ export interface ISelectedResponseCoffe {
   categoria: string[]
   descricao: string
   valor: number
-  count?: number
+  count: number
 }

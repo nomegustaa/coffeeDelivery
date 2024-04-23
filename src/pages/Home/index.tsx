@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react'
 import { IResponseCoffe, ISelectedResponseCoffe } from './interface'
 
 const Home = () => {
-  const [data, setData] = useState<IResponseCoffe[] | null>(null)
+  const [data, setData] = useState<IResponseCoffe[] | []>([])
   const [selectedCoffe, setSelectedCoffe] = useState<
-    ISelectedResponseCoffe[] | null
-  >(null)
+    ISelectedResponseCoffe[] | []
+  >([])
   const getCoffes = async () => {
     try {
       const response = await axios.get('../../../api.json')
@@ -21,19 +21,21 @@ const Home = () => {
     }
   }
 
-  console.log(selectedCoffe)
-
   const getCoffeSelected = (idCoffe: number, countCoffe: number) => {
-    console.log(idCoffe, countCoffe)
-    // const getCoffe = data?.find((item) => item.id === idCoffe)
-    // const coffeExisting = selectedCoffe?.some((item) => item.id === idCoffe)
-    // if (getCoffe) {
-    // console.log(coffeSelected)
-    // setSelectedCoffe(coffeSelected)
-    // }
+    const getCoffe = data?.find((item) => item.id === idCoffe)
+    if (getCoffe) {
+      const coffeExisting = selectedCoffe.some((item) => item.id === idCoffe)
+      if (coffeExisting) {
+        setSelectedCoffe((prev) =>
+          prev.map((item) => {
+            return { ...item, count: item.count + countCoffe }
+          }),
+        )
+      } else {
+        setSelectedCoffe([...selectedCoffe, { ...getCoffe, count: countCoffe }])
+      }
+    }
   }
-
-  // console.log(selectedCoffe)
 
   useEffect(() => {
     getCoffes()
