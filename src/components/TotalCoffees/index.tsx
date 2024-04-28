@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import Button from '../../utils/Button'
 import InputNumber from '../../utils/InputNumber'
 import { TotalCoffeProps } from './interface'
@@ -19,7 +19,11 @@ const TotalCoffess = ({ selectedCoffe }: TotalCoffeProps) => {
             <S.ContainerAmount>
               <p title={item.nome}>{item.nome}</p>
               <S.Amount>
-                <InputNumber />
+                <InputNumber
+                  key={item.id}
+                  idCoffee={item.id}
+                  countCoffee={item.count}
+                />
                 <S.ButtonRemove onClick={() => removeCoffeSelected(item.id)}>
                   REMOVER
                 </S.ButtonRemove>

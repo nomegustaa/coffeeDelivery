@@ -10,6 +10,7 @@ import { AuthContext } from '../../context/AuthContext'
 const Home = () => {
   const { getCoffeSelected } = useContext(AuthContext)
   const [data, setData] = useState<IResponseCoffe[] | []>([])
+
   const getCoffes = async () => {
     try {
       const response = await axios.get('../../../api.json')

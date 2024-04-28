@@ -2,7 +2,8 @@ import { ShoppingCart } from 'phosphor-react'
 import { IResponseCoffe } from '../../pages/Home/interface'
 import InputNumber from '../../utils/InputNumber'
 import * as S from './styles'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 const Coffees = ({
   id,
@@ -14,7 +15,8 @@ const Coffees = ({
   getCoffeSelected,
   data,
 }: IResponseCoffe) => {
-  const [countCoffe, setCountCoffe] = useState<number>(1)
+  const { selectedCoffe } = useContext(AuthContext)
+  const isSelected = selectedCoffe.some((item) => item.id === id)
   return (
     <S.Container key={id}>
       <img src={imagem} alt="example-coffe" />
@@ -31,16 +33,21 @@ const Coffees = ({
         <p>
           R$ <span>{String(valor).replace('.', ',')}</span>
         </p>
-
-        <InputNumber countCoffe={countCoffe} setCountCoffe={setCountCoffe} />
-
-        <div className="shoppingCart">
-          <ShoppingCart
-            size={24}
-            weight="fill"
-            color="#FFF"
-            onClick={() => getCoffeSelected(id, countCoffe, data)}
+        {isSelected && (
+          <InputNumber
+            countCoffee={
+              selectedCoffe.find((item) => item.id === id)?.count || 0
+            }
+            idCoffee={id}
+            key={id}
           />
+        )}
+
+        <div
+          className="shoppingCart"
+          onClick={() => getCoffeSelected(id, data)}
+        >
+          <ShoppingCart key={id} size={24} weight="fill" color="#FFF" />
         </div>
       </S.ShoppingCart>
     </S.Container>

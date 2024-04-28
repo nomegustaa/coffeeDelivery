@@ -11,17 +11,20 @@ export interface ISelectedResponseCoffe {
   count: number
 }
 
+export interface ICountCoffee {
+  idCoffee: number
+  count: number
+}
+
 interface ContextProps {
   children: React.ReactNode
 }
 
 interface AuthContentProps {
-  getCoffeSelected: (
-    idCoffe: number,
-    countCoffe: number,
-    data: IResponseCoffe[],
-  ) => void
+  getCoffeSelected: (idCoffe: number, data: IResponseCoffe[]) => void
   removeCoffeSelected: (idSelected: number) => void
+  addCountCoffee: (idCoffee: number) => void
+  removeCountCoffee: (idCoffee: number) => void
   selectedCoffe: [] | ISelectedResponseCoffe[]
 }
 
@@ -34,22 +37,39 @@ export const Context = ({ children }: ContextProps) => {
     ISelectedResponseCoffe[] | []
   >([])
 
-  const getCoffeSelected = (
-    idCoffe: number,
-    countCoffe: number,
-    data: IResponseCoffe[],
-  ) => {
+  const addCountCoffee = (idCoffee: number) => {
+    setSelectedCoffe((prev) =>
+      prev.map((item) =>
+        item.id === idCoffee ? { ...item, count: item.count + 1 } : item,
+      ),
+    )
+  }
+
+  const removeCountCoffee = (idCoffee: number) => {
+    setSelectedCoffe((prev) =>
+      prev.map((item) =>
+        item.id === idCoffee && item.count > 0
+          ? { ...item, count: item.count - 1 }
+          : item,
+      ),
+    )
+  }
+
+  const getCoffeSelected = (idCoffe: number, data: IResponseCoffe[]) => {
     const getCoffe = data?.find((item) => item.id === idCoffe)
     if (getCoffe) {
       const coffeExisting = selectedCoffe.some((item) => item.id === idCoffe)
       if (coffeExisting) {
         setSelectedCoffe((prev) =>
           prev.map((item) => {
-            return { ...item, count: item.count + countCoffe }
+            if (item.id === idCoffe) {
+              return { ...item, count: item.count + 1 }
+            }
+            return item
           }),
         )
       } else {
-        setSelectedCoffe([...selectedCoffe, { ...getCoffe, count: countCoffe }])
+        setSelectedCoffe([...selectedCoffe, { ...getCoffe, count: 1 }])
       }
     }
   }
@@ -65,6 +85,8 @@ export const Context = ({ children }: ContextProps) => {
         getCoffeSelected,
         selectedCoffe,
         removeCoffeSelected,
+        addCountCoffee,
+        removeCountCoffee,
       }}
     >
       {children}
