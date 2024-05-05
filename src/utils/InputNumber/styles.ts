@@ -6,7 +6,7 @@ export const ContainerInput = styled.div`
   gap: 0.25rem;
   background-color: ${(props) => props.theme['base-button']};
   padding: 8px;
-  width: 30%;
+  width: 70px;
   border-radius: 6px;
   height: 40px;
 

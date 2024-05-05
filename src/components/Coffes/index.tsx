@@ -31,12 +31,12 @@ const Coffees = ({
 
       <S.ShoppingCart>
         <p>
-          R$ <span>{String(valor).replace('.', ',')}</span>
+          R$ <span>{valor.toFixed(2).toString().replace('.', ',')}</span>
         </p>
         {isSelected && (
           <InputNumber
             countCoffee={
-              selectedCoffe.find((item) => item.id === id)?.count || 0
+              selectedCoffe.find((item) => item.id === id)?.count || 1
             }
             idCoffee={id}
             key={id}

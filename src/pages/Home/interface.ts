@@ -7,4 +7,5 @@ export interface IResponseCoffe {
   valor: number
   getCoffeSelected: (idcoffe: number, data: IResponseCoffe[]) => void
   data: IResponseCoffe[]
+  totalValue?: number
 }

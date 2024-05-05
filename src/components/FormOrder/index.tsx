@@ -4,6 +4,7 @@ import * as S from './styles'
 const FormOrder = () => {
   return (
     <>
+      <S.Title>Complete seu pedido</S.Title>
       <S.Container>
         <S.ContainerDescription>
           <MapPinLine size={20} weight="regular" color="#C47F17" />

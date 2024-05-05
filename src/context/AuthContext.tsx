@@ -49,7 +49,10 @@ export const Context = ({ children }: ContextProps) => {
     setSelectedCoffe((prev) =>
       prev.map((item) =>
         item.id === idCoffee && item.count > 0
-          ? { ...item, count: item.count - 1 }
+          ? {
+              ...item,
+              count: item.count - 1,
+            }
           : item,
       ),
     )
@@ -63,7 +66,10 @@ export const Context = ({ children }: ContextProps) => {
         setSelectedCoffe((prev) =>
           prev.map((item) => {
             if (item.id === idCoffe) {
-              return { ...item, count: item.count + 1 }
+              return {
+                ...item,
+                count: item.count + 1,
+              }
             }
             return item
           }),

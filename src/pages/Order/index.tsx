@@ -10,9 +10,13 @@ const Order = () => {
 
   return (
     <S.ContainerOrder>
-      <FormOrder />
-      <TotalCoffess selectedCoffe={selectedCoffe} />
-      <Payment />
+      <S.ContainerWrapper>
+        <FormOrder />
+        <Payment />
+      </S.ContainerWrapper>
+      <S.ContainerWrapper>
+        <TotalCoffess selectedCoffe={selectedCoffe} />
+      </S.ContainerWrapper>
     </S.ContainerOrder>
   )
 }

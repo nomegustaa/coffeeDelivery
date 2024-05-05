@@ -1,10 +1,38 @@
 import styled from 'styled-components'
 
+export const Title = styled.p`
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: bold;
+  color: ${(props) => props.theme['base-subtitle']};
+`
+
 export const ContainerTotalCoffes = styled.div`
   background-color: ${(props) => props.theme['base-card']};
   padding: 40px;
   border-radius: 8px 40px;
-  max-width: 448px;
+  max-height: 560px;
+  width: 500px;
+`
+
+export const ContainerTotalCoffesWrapper = styled.div`
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0 10px 0 0;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
 `
 
 export const CoffeeNotFound = styled.p`
@@ -32,7 +60,6 @@ export const ContainerCoffe = styled.div`
 export const ContainerAmount = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   p {
     white-space: nowrap;
     overflow: hidden;

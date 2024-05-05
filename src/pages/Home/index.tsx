@@ -75,6 +75,7 @@ const Home = () => {
         {data?.map((item) => {
           return (
             <Coffees
+              totalValue={item.totalValue}
               id={item.id}
               key={item.id}
               nome={item.nome}

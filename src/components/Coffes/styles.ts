@@ -57,7 +57,6 @@ export const ShoppingCart = styled.div`
   p {
     font-family: 'Roboto', sans-serif;
     color: ${(props) => props.theme['base-text']};
-    margin-right: 1rem;
   }
 
   p > span {

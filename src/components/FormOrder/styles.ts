@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const Title = styled.p`
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: bold;
+  color: ${(props) => props.theme['base-subtitle']};
+`
+
 export const Container = styled.div`
   max-width: 784px;
   background-color: ${(props) => props.theme['base-card']};

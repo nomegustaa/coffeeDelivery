@@ -4,10 +4,14 @@ import ButtonPayment from '../../utils/ButtonPayment'
 import { useState } from 'react'
 
 const Payment = () => {
-  const [valueButton, setValueButton] = useState<string>('')
+  const [activeButton, setActiveButton] = useState<string | null>(null)
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    setValueButton(e.currentTarget.textContent || '')
+  const handleActiveButton = (label: string) => {
+    if (activeButton === label) {
+      setActiveButton(null)
+    } else {
+      setActiveButton(label)
+    }
   }
 
   return (
@@ -24,22 +28,22 @@ const Payment = () => {
 
       <S.ContainerButton>
         <ButtonPayment
-          selected={valueButton.includes('CARTÃO DE CRÉDITO')}
+          selected={activeButton === 'cartão de crédito'}
           label="Cartão de crédito"
           icon={<CreditCard size={20} color="#8047F8" />}
-          onClickButton={handleClick}
+          onClick={() => handleActiveButton('cartão de crédito')}
         />
         <ButtonPayment
-          selected={valueButton.includes('CARTÃO DE DÉBITO')}
+          selected={activeButton === 'cartão de débito'}
           label="Cartão de Débito"
           icon={<Bank size={20} color="#8047F8" />}
-          onClickButton={handleClick}
+          onClick={() => handleActiveButton('cartão de débito')}
         />
         <ButtonPayment
-          selected={valueButton.includes('DINHEIRO')}
+          selected={activeButton === 'dinheiro'}
           label="Dinheiro"
           icon={<Money size={20} color="#8047F8" />}
-          onClickButton={handleClick}
+          onClick={() => handleActiveButton('dinheiro')}
         />
       </S.ContainerButton>
     </S.Container>

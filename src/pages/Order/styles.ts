@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
 export const ContainerOrder = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 50rem);
-  grid-row-gap: 1rem;
-  /* place-items: space-betoween; */
+  display: flex;
+  justify-content: space-between;
+`
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `

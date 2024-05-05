@@ -1,23 +1,23 @@
-import React, { ComponentProps } from 'react'
+import React from 'react'
 import * as S from './styles'
 
-interface ButtonPaymentProps extends ComponentProps<'button'> {
+interface ButtonPaymentProps {
   icon: React.ReactNode
   label: string
-  onClickButton: React.MouseEventHandler<HTMLDivElement>
-  selected?: boolean
+  selected: boolean
+  onClick: React.MouseEventHandler<HTMLDivElement> | undefined
 }
 
 const ButtonPayment = ({
   icon,
   label,
-  onClickButton,
   selected,
+  onClick,
 }: ButtonPaymentProps) => {
   return (
     <S.ContainerButtonPayment
-      onClick={onClickButton}
-      className={selected ? 'active' : 'disabled'}
+      onClick={onClick}
+      className={selected ? 'active' : ''}
     >
       {icon}
       <S.Button value={label}>{label.toUpperCase()}</S.Button>
