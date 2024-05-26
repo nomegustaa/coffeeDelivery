@@ -4,15 +4,36 @@ import InputNumber from '../../utils/InputNumber'
 import { TotalCoffeProps } from './interface'
 import * as S from './styles'
 import { AuthContext } from '../../context/AuthContext'
+import { IHandleCreatOrder } from '../FormOrder/interface'
+import { useNavigate } from 'react-router-dom'
 
 const TotalCoffess = ({ selectedCoffe }: TotalCoffeProps) => {
-  const { removeCoffeSelected } = useContext(AuthContext)
+  const { handleSubmit, formState, removeCoffeSelected, activeButton, reset } =
+    useContext(AuthContext)
+
+  const navigate = useNavigate()
+
+  const handleCreateOrder = (data: IHandleCreatOrder) => {
+    localStorage.setItem('district', data.district)
+    localStorage.setItem('street', data.street)
+    localStorage.setItem('cep', data.cep)
+    localStorage.setItem('complement', data.complement || '')
+    localStorage.setItem('numberHouse', String(data.numberHouse))
+    localStorage.setItem('city', data.city)
+    localStorage.setItem('uf', data.uf)
+    localStorage.setItem('payment', activeButton || '')
+    reset()
+    navigate('/pedidoconfirmado')
+  }
+
   const totalCoffee = selectedCoffe.reduce(
     (acc, value) => acc + value.valor * value.count,
     0,
   )
   const freight = 3.5
   const totalWithFreight = totalCoffee + freight
+
+  console.log(formState)
   return (
     <>
       <S.Title>Cafés selecionados</S.Title>
@@ -66,7 +87,12 @@ const TotalCoffess = ({ selectedCoffe }: TotalCoffeProps) => {
         </S.ContainerPrice>
         <Button
           label="CONFIRMAR PEDIDO"
-          disabled={selectedCoffe.length === 0}
+          disabled={
+            selectedCoffe.length === 0 ||
+            activeButton === null ||
+            !formState.isValid
+          }
+          onClick={handleSubmit(handleCreateOrder)}
         />
       </S.ContainerTotalCoffes>
     </>

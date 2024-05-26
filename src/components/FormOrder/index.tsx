@@ -1,7 +1,11 @@
 import { MapPinLine } from 'phosphor-react'
 import * as S from './styles'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 const FormOrder = () => {
+  const { register, formState } = useContext(AuthContext)
+
   return (
     <>
       <S.Title>Complete seu pedido</S.Title>
@@ -15,17 +19,44 @@ const FormOrder = () => {
         </S.ContainerDescription>
 
         <S.Form>
-          <input type="text" placeholder="CEP" className="stateCode" />
-          <input type="text" placeholder="Rua" className="street" />
-          <input type="text" placeholder="Número" className="number" />
+          <input
+            type="text"
+            placeholder="CEP"
+            className="stateCode"
+            {...register('cep')}
+          />
+          <input
+            type="text"
+            placeholder="Rua"
+            className="street"
+            {...register('street')}
+            title={formState.errors.street?.message}
+          />
+          <input
+            type="text"
+            placeholder="Número"
+            className="numberHouse"
+            {...register('numberHouse', { valueAsNumber: true })}
+          />
           <input
             type="text"
             placeholder="Complemento Opcional"
             className="complement"
+            {...register('complement')}
           />
-          <input type="text" placeholder="Bairro" />
-          <input type="text" placeholder="Cidade" className="city" />
-          <input type="text" placeholder="UF" className="uf" />
+          <input type="text" placeholder="Bairro" {...register('district')} />
+          <input
+            type="text"
+            placeholder="Cidade"
+            className="city"
+            {...register('city')}
+          />
+          <input
+            type="text"
+            placeholder="UF"
+            className="uf"
+            {...register('uf')}
+          />
         </S.Form>
       </S.Container>
     </>

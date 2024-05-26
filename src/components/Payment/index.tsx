@@ -1,10 +1,11 @@
 import { Bank, CreditCard, CurrencyCircleDollar, Money } from 'phosphor-react'
 import * as S from './styles'
 import ButtonPayment from '../../utils/ButtonPayment'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 const Payment = () => {
-  const [activeButton, setActiveButton] = useState<string | null>(null)
+  const { activeButton, setActiveButton } = useContext(AuthContext)
 
   const handleActiveButton = (label: string) => {
     if (activeButton === label) {

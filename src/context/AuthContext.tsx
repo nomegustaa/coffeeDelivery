@@ -1,5 +1,17 @@
 import { createContext, useState } from 'react'
 import { IResponseCoffe } from '../pages/Home/interface'
+import {
+  IHandleCreatOrder,
+  formSchema,
+} from '../components/FormOrder/interface'
+import { zodResolver } from '@hookform/resolvers/zod'
+import {
+  FormState,
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormReset,
+  useForm,
+} from 'react-hook-form'
 
 export interface ISelectedResponseCoffe {
   id: number
@@ -26,6 +38,12 @@ interface AuthContentProps {
   addCountCoffee: (idCoffee: number) => void
   removeCountCoffee: (idCoffee: number) => void
   selectedCoffe: [] | ISelectedResponseCoffe[]
+  register: UseFormRegister<IHandleCreatOrder>
+  formState: FormState<IHandleCreatOrder>
+  handleSubmit: UseFormHandleSubmit<IHandleCreatOrder>
+  reset: UseFormReset<IHandleCreatOrder>
+  setActiveButton: React.Dispatch<React.SetStateAction<string | null>>
+  activeButton: string | null
 }
 
 export const AuthContext = createContext<AuthContentProps>(
@@ -33,9 +51,25 @@ export const AuthContext = createContext<AuthContentProps>(
 )
 
 export const Context = ({ children }: ContextProps) => {
+  const [activeButton, setActiveButton] = useState<string | null>(null)
+
   const [selectedCoffe, setSelectedCoffe] = useState<
     ISelectedResponseCoffe[] | []
   >([])
+
+  const { register, formState, handleSubmit, reset } =
+    useForm<IHandleCreatOrder>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        cep: '',
+        city: '',
+        complement: '',
+        district: '',
+        numberHouse: 0,
+        street: '',
+        uf: '',
+      },
+    })
 
   const addCountCoffee = (idCoffee: number) => {
     setSelectedCoffe((prev) =>
@@ -88,6 +122,12 @@ export const Context = ({ children }: ContextProps) => {
   return (
     <AuthContext.Provider
       value={{
+        reset,
+        activeButton,
+        setActiveButton,
+        handleSubmit,
+        formState,
+        register,
         getCoffeSelected,
         selectedCoffe,
         removeCoffeSelected,

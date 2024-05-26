@@ -18,9 +18,10 @@ const OrderConfirmed = () => {
               <MapPin size={24} color="#FFF" weight="fill" />
             </div>
             <p>
-              Entrega em <strong>Rua joão Daniel Martinelli, 102</strong>
+              Entrega em <strong>{localStorage.getItem('street')}</strong>
               <br />
-              Farrapos - Porto Alegre, Rs
+              {localStorage.getItem('district')} -{' '}
+              {localStorage.getItem('city')}, {localStorage.getItem('uf')}
             </p>
           </S.ContainerSubTitle>
 
@@ -42,7 +43,7 @@ const OrderConfirmed = () => {
             <p>
               Pagamento na entrega
               <br />
-              <strong>Cartão de Crédito</strong>
+              <strong>{localStorage.getItem('payment')}</strong>
             </p>
           </S.ContainerSubTitle>
         </S.ContainerIcons>
